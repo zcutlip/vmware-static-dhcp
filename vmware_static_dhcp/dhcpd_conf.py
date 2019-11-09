@@ -187,6 +187,16 @@ class VMNetDhcpdConf:
         self._update_maps(hostname, macaddr, ip_addr, host_section)
         self.host_sections.append(host_section)
 
+    def write_dhcpd_conf(self, outpath):
+        print("Writing update dhcpd configuration to {}".format(outpath))
+        with open(outpath, "w") as out:
+            for line in self.vmnet_lines:
+                out.write(line + "\n")
+            out.write("\n")
+            for section in self.host_sections:
+                out.write(str(section))
+                out.write("\n")
+
 
 if __name__ == "__main__":
     conf = VMNetDhcpdConf("./dhcpd.conf")
