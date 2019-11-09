@@ -106,6 +106,9 @@ class DhcpdConfHostSection:
 class VMNetDhcpdConf:
 
     def __init__(self, path):
+        self.hostname_map = {}
+        self.mac_addr_map = {}
+        self.ip_addr_map = {}
         vmnet_lines, host_sections = self._parse_dhcp_conf(path)
         self.path = path
         self.vmnet_lines = vmnet_lines
@@ -161,6 +164,23 @@ class VMNetDhcpdConf:
                         "Line {}: unrecognized line outside a host section: {}".format(current, line))
 
         return (vmnet_lines, host_sections)
+
+    def _update_maps(self, hostname, macaddr, ip_addr, host_section):
+        macaddr = macaddr.lower()
+        hostname = hostname.lower()
+        if hostname in self.hostname_map:
+            raise MalformedDhcpdConf(
+                "Duplicate hostname found: {}".format(hostname))
+
+        if macaddr in self.mac_addr_map:
+            raise MalformedDhcpdConf("Duplicate MAC address found: {}".format(macaddr))
+
+        if ip_addr in self.ip_addr_map:
+            raise MalformedDhcpdConf("Duplicate IP Address found: {}".format(ip_addr))
+
+        self.hostname_map[hostname] = host_section
+        self.mac_addr_map[macaddr] = host_section
+        self.ip_addr_map[ip_addr] = host_section
 
 
 if __name__ == "__main__":
