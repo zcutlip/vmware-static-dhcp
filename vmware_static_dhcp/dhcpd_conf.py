@@ -22,8 +22,9 @@ class DhcpdConfHostSection:
         options = {}
         cls._sanity_check(section_lines)
         line = section_lines[0]
+        line = line.rstrip("{")
         parts = line.split()
-        if len(parts) != 3:
+        if len(parts) != 2:
             raise MalformedDhcpdConfHostSection(
                 "Malformed host section, line 0: {}".format(line))
         hostname = parts[1]
