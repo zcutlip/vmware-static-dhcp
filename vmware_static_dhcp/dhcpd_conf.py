@@ -182,6 +182,11 @@ class VMNetDhcpdConf:
         self.mac_addr_map[macaddr] = host_section
         self.ip_addr_map[ip_addr] = host_section
 
+    def add_host_section(self, hostname, macaddr, ip_addr):
+        host_section = DhcpdConfHostSection(hostname, macaddr, ip_addr)
+        self._update_maps(hostname, macaddr, ip_addr, host_section)
+        self.host_sections.append(host_section)
+
 
 if __name__ == "__main__":
     conf = VMNetDhcpdConf("./dhcpd.conf")
