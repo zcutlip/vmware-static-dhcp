@@ -95,10 +95,10 @@ class DhcpdConfHostSection:
 
     def __str__(self):
         _str = "host {} {{\n".format(self.hostname)
-        _str += "\thardware ethernet {}\n".format(self.macaddr)
-        _str += "\tfixed-addr {}\n".format(self.ip_addr)
+        _str += "\thardware ethernet {};\n".format(self.macaddr)
+        _str += "\tfixed-address {};\n".format(self.ip_addr)
         for k, v in self.options:
-            _str += "\toption {} {}\n".format(k, v)
+            _str += "\toption {} {};\n".format(k, v)
         _str += "}\n"
         return _str
 
