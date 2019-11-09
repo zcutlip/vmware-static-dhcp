@@ -2,6 +2,10 @@ class MalformedDhcpdConfHostSection(Exception):
     pass
 
 
+class MalformedDhcpdConf(Exception):
+    pass
+
+
 class DhcpdConfHostSection:
 
     def __init__(self, hostname, macaddr, ip_addr, options={}):
@@ -132,17 +136,19 @@ class VMNetDhcpdConf:
                 if not host_section_started:  # start of a host section
                     host_section_started = True
                 else:  # shouldn't be any open-braces inside a host section
-                    raise MalformedDhcpdConfHostSection(
+                    raise MalformedDhcpdConf(
                         "Line {}: unrecognized line inside a host section: {}".format(current, line))
                 host_section_lines.append(line)
                 continue
             elif line.endswith("}"):
                 if not host_section_started:  # shoudln't be any close-braces outside a host section
-                    raise MalformedDhcpdConfHostSection("Line {}: unrecognized closing bracket outside a host section: {}".format(current, line))
+                    raise MalformedDhcpdConf(
+                        "Line {}: unrecognized closing bracket outside a host section: {}".format(current, line))
                 else:
                     host_section_lines.append(line)
                     hostname, macaddr, ip_addr, options = DhcpdConfHostSection.parse_host_section(host_section_lines)
                     host_section = DhcpdConfHostSection(hostname, macaddr, ip_addr, options=options)
+                    self._update_maps(hostname, macaddr, ip_addr, host_section)
                     host_sections.append(host_section)
                     host_section_lines = []
                     host_section_started = False
@@ -150,7 +156,7 @@ class VMNetDhcpdConf:
                 if host_section_started:
                     host_section_lines.append(line)
                 else:
-                    raise MalformedDhcpdConfHostSection(
+                    raise MalformedDhcpdConf(
                         "Line {}: unrecognized line outside a host section: {}".format(current, line))
 
         return (vmnet_lines, host_sections)
