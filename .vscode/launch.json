@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python: vmware_static_dhcp module",
+            "type": "python",
+            "request": "launch",
+            "module": "vmware_static_dhcp.vmware_static_dhcp",
+            "args": [
+                "./new_hosts",
+                "./new_dhcpd.conf",
+                "--hw-addr", "aa:bb:cc:dd:ee:ff",
+                "--ip-addr", "192.168.127.40",
+                "--hostname", "new-hostname"
+            ]
+        },
+        {
             "name": "Python: Module",
             "type": "python",
             "request": "launch",
