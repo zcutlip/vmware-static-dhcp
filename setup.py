@@ -19,6 +19,6 @@ setup(name=about["__title__"],
       entry_points={
           'console_scripts': ['vmwarestatic=vmware_static_dhcp.cli:main'], },
       python_requires='>=3.7',
-      install_requires=[],
+      install_requires=['configure-with-sudo>=0.1.0.dev4'],
       package_data={'vmware_static_dhcp': ['config/*']},
       )
