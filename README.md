@@ -18,7 +18,7 @@ For the user who creates Virtual Machines then wants to frequently `ssh` or `rsy
 ## Installation
 
     $ virtualenv -p python3 ./vmwarestatic
-    $ $ source ./vmwarestatic/bin/activate
+    $ source ./vmwarestatic/bin/activate
     $ (vmwarestatic) cd ./vmware-dhcp-static
     $ (vmwarestatic) pip install .
     $ (vmwarestatic) vmwarestatic --version
