@@ -107,7 +107,7 @@ host catalina-vm {
 }
 ```
 
-To update config files in place, they are first created as temp files, and then copied in place. The last step requires elevated, privileges. Tell `vmwarestatic` to use `sudo`, which will prompt for authentication when necessary. Also note the destination is the actual system configuration destination:
+To update config files in place, they are first created as temp files, and then copied in place. The last step requires elevated privileges. Tell `vmwarestatic` to use `sudo`, which will prompt for authentication when necessary. Also note the destination is the actual system configuration destination:
 
 ```Console
 $ vmwarestatic /etc/hosts /Library/Preferences/VMware\ Fusion/vmnet8/dhcpd.conf \
