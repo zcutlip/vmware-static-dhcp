@@ -188,7 +188,7 @@ class VMNetDhcpdConf:
         self.host_sections.append(host_section)
 
     def write_dhcpd_conf(self, outpath):
-        print("Writing update dhcpd configuration to {}".format(outpath))
+        print("Writing updated dhcpd configuration to {}".format(outpath))
         with open(outpath, "w") as out:
             for line in self.vmnet_lines:
                 out.write(line + "\n")
