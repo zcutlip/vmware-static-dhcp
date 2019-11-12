@@ -6,6 +6,7 @@ from configure_with_sudo import GenericConfigure
 
 from .dhcpd_conf import VMNetDhcpdConf
 from .hosts_file import HostsFile
+from .version import VmwareStaticDhcpAbout
 
 # TODO: make this part of default config
 # TODO: Make this overridable in user config or command line options/args
@@ -52,7 +53,8 @@ class VMWareStaticDhcp:
 
 
 def parse_args(argv):
-    parser = ArgumentParser()
+    description = str(VmwareStaticDhcpAbout())
+    parser = ArgumentParser(description=description)
     parser.add_argument("updated_hosts_path", help="Path to updated hosts file")
     parser.add_argument("updated_dhcpd_conf_path", help="Path to update dhcpd.conf file.")
     parser.add_argument("--hw-addr", help="MAC address", required=True)
@@ -62,6 +64,9 @@ def parse_args(argv):
         "--hostname", help="hostname to associate with IP address.", required=True)
     parser.add_argument(
         "--use-sudo", help="Use 'sudo' to elevate privileges before writing updated files.", action='store_true')
+    parser.add_argument("--version", help="Print version string and exit.",
+                        action="version",
+                        version=description)
     args = parser.parse_args(argv)
     return args
 
