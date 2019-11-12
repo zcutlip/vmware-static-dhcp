@@ -1,4 +1,5 @@
 __title__ = "vmware_static_dhcp"
+__cli_title__ = "vmwarestatic"
 __version__ = "0.1.0.dev0"
 __summary__ = "VMware Fusion static DHCP/hosts file setup tool"
 
