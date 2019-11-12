@@ -96,6 +96,7 @@ class HostsFile:
         self.hosts.remove(entry)
 
     def write_hosts(self, outpath):
+        print("Writing updated hosts file to {}".format(outpath))
         with open(outpath, "w") as outhosts:
             for entry in self.hosts:
                 outhosts.write("{}\n".format(str(entry)))
