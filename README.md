@@ -4,12 +4,12 @@
 
 A utility to add:
 
-- A static DHCP reservation to VMWare Fusion's `dhcpd.conf`
+- A static DHCP reservation to VMware Fusion's `dhcpd.conf`
 - A corresponding hostname/IP address entry to `/etc/hosts`
 
 ## Caveats
 
-Currently, `vmwarestatic` does minimal sanity checking, so if asked it may add nonsensical things to your system's configuration files. It may hose your VMWare Fusion installation or even your entire system. It works for me, but use at your own risk.
+Currently, `vmwarestatic` does minimal sanity checking, so if asked it may add nonsensical things to your system's configuration files. It may hose your VMware Fusion installation or even your entire system. It works for me, but use at your own risk.
 
 ## Rationale
 
@@ -126,7 +126,7 @@ Killing sudo credential.
 ## TODO
 
 - [ ] More robust sanity checking of IP addresses, against subnet, etc.
-- [ ] Checking if VMWare is currently running
+- [ ] Checking if VMware is currently running
 - [ ] Should work on VMware Workstation, at least on Linux (maybe on Windows) without too much effort
 - [ ] A config file to avoid having to provide the same command line args every time.
 - [ ] Maybe upload to PyPI in order top `pip install`?
